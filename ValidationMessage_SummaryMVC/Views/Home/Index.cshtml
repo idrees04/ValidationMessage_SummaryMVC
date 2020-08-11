@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<p>
+    @Html.ValidationSummary("",new { @class="text-danger"})
+</p>
+
+
+
+@using (Html.BeginForm())
+{
+
+    //       VALIDATION MESSAGE
+    //  The Html.ValidationMessage() is an extension method, that is a loosely typed method. It displays a validation message if an error exists for the specified field in the ModelStateDictionary object.
+    //        VALIDATION SUMMARY
+    //  The ValidationSummary helper method generates an unordered list(ul element) of validation messages that are in the ModelStateDictionary object.
+    //  The ValidationSummary can be used to display all the error messages for all the fields.It can also be used to display custom error messages.
+
+
+    <p>
+        Entyer Name: @Html.TextBox("fullName","",new {@class="form-control" })
+        <b style="color:red;">@ViewData["fullNameError"]</b>
+        @*@Html.ValidationMessage("fullName",new {@class="text-danger" })*@
+    </p>
+    <p>
+        Entyer Age: @Html.TextBox("Age", "", new { @class = "form-control" })
+        <b style="color:red;">@ViewData["AgeError"]</b>
+                @*@Html.ValidationMessage("Age")*@
+                @*@Html.ValidationMessage("Age", new { @class = "text-danger" })*@
+    </p>
+    <p>
+        Entyer Email: @Html.TextBox("Email", "", new { @class = "form-control" })
+        <b style="color:red;">@ViewData["EmailError"]</b>
+                @*@Html.ValidationMessage("Email")*@
+                @*@Html.ValidationMessage("Email", new { @class = "text-danger" })*@
+    </p>
+    <input type="submit" value="Submit" class="btn btn-info" />
+    @Html.Raw(ViewData["SuccessMessage"])
+}
